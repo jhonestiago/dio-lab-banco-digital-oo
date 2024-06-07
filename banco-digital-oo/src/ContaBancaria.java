@@ -27,4 +27,17 @@ public class ContaBancaria {
     protected void transferir(ContaBancaria contaDestino, double valor) {
         // Implementar
     }
+
+    public String getAgencia() {
+        return agencia;
+    }
+
+    public String getConta() {
+        return conta;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
 }
