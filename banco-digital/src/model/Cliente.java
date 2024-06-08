@@ -18,7 +18,7 @@ public class Cliente {
         }
     }
 
-    // Métodos
+    // Métodos
     // Método para validar a senha
     public boolean validarSenha(String senha) {
         return this.senha.equals(senha);
@@ -38,7 +38,7 @@ public class Cliente {
             }
         }
 
-        // Se todos os números são iguais ou o tamanho do CPF é diferente de 11, 
+        // Se todos os números são iguais ou o tamanho do CPF é diferente de 11,
         // retorna inválido
         if (numerosIguais || cpf.length() != 11) {
             return valido;
@@ -47,7 +47,7 @@ public class Cliente {
         int primeiroSomatorio = 0;
         int j = 10;
 
-        // Calcula o somatório dos primeiros 9 dígitos, 
+        // Calcula o somatório dos primeiros 9 dígitos,
         // multiplicando cada um pelo peso decrescente
         for (int i = 0; i < (cpf.length() - 2); i++) {
             if (j >= 2) {
@@ -65,7 +65,7 @@ public class Cliente {
         int segundoSomatorio = 0;
         int k = 11;
 
-        // Calcula o somatório dos primeiros 10 dígitos, 
+        // Calcula o somatório dos primeiros 10 dígitos,
         // multiplicando cada um pelo peso decrescente
         for (int i = 0; i < (cpf.length() - 1); i++) {
             if (k >= 2) {

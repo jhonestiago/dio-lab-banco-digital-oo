@@ -7,35 +7,33 @@ import service.BancoService;
 public class Main {
 
     public static void main(String[] args) {
-        Cliente cliente1 = new Cliente("João Silva", "12345678900", "senha123");
-        Cliente cliente2 = new Cliente("Maria Oliveira", "09876543211", "senha456");
+        // Criação de clientes
+        Cliente cliente1 = new Cliente("João Silva", "12345678900", "1234");
+        Cliente cliente2 = new Cliente("Maria Oliveira", "09876543211", "5678");
 
+        // Criação de contas bancárias
         ContaBancaria contaCorrente = new ContaCorrente(cliente1);
         ContaBancaria contaPoupanca = new ContaPoupanca(cliente2);
 
+        // Criação do serviço bancário
         BancoService bancoService = new BancoService();
 
+        // Realização de depósitos
         bancoService.realizarDeposito(contaCorrente, 1000.0);
         bancoService.realizarDeposito(contaPoupanca, 500.0);
 
-        contaCorrente.imprimirExtrato();
-        contaPoupanca.imprimirExtrato();
+        // Impressão dos extratos
+        bancoService.imprimirExtrato(contaCorrente);
+        bancoService.imprimirExtrato(contaPoupanca);
 
-        boolean saqueRealizado = bancoService.realizarSaque(contaCorrente, 200.0, "senha123");
-        if (saqueRealizado) {
-            System.out.println("Saque realizado com sucesso!");
-        } else {
-            System.out.println("Falha no saque: senha incorreta.");
-        }
+        // Realização de saques
+        bancoService.realizarSaque(contaCorrente, 200.0, "1234");
 
-        boolean transferenciaRealizada = bancoService.realizarTransferencia(contaCorrente, contaPoupanca, 200.0, "senha123");
-        if (transferenciaRealizada) {
-            System.out.println("Transferência realizada com sucesso!");
-        } else {
-            System.out.println("Falha na transferência: senha incorreta.");
-        }
+        // Realização de transferências
+        bancoService.realizarTransferencia(contaCorrente, contaPoupanca, 200.0, "1234");
 
-        contaCorrente.imprimirExtrato();
-        contaPoupanca.imprimirExtrato();
+        // Impressão dos extratos após operações
+        bancoService.imprimirExtrato(contaCorrente);
+        bancoService.imprimirExtrato(contaPoupanca);
     }
 }

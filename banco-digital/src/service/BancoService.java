@@ -15,7 +15,7 @@ public class BancoService {
     }
 
     // Realizar Saque
-    public boolean realizarSaque(ContaBancaria conta, double valor, String senha) {
+    public void realizarSaque(ContaBancaria conta, double valor, String senha) {
         if (conta.getCliente().validarSenha(senha)) {
             if (valor > 0) {
                 boolean sucesso = conta.sacar(valor);
@@ -24,19 +24,16 @@ public class BancoService {
                 } else {
                     System.out.println("Saldo insuficiente para saque.");
                 }
-                return sucesso;
             } else {
                 System.out.println("Valor de saque deve ser positivo.");
-                return false;
             }
         } else {
             System.out.println("Senha incorreta.");
-            return false;
         }
     }
 
     // Realizar Transferência
-    public boolean realizarTransferencia(ContaBancaria contaOrigem, ContaBancaria contaDestino, double valor, String senha) {
+    public void realizarTransferencia(ContaBancaria contaOrigem, ContaBancaria contaDestino, double valor, String senha) {
         if (contaOrigem.getCliente().validarSenha(senha)) {
             if (valor > 0) {
                 boolean sucesso = contaOrigem.transferir(valor, contaDestino);
@@ -45,14 +42,11 @@ public class BancoService {
                 } else {
                     System.out.println("Saldo insuficiente para transferência.");
                 }
-                return sucesso;
             } else {
                 System.out.println("Valor de transferência deve ser positivo.");
-                return false;
             }
         } else {
             System.out.println("Senha incorreta.");
-            return false;
         }
     }
     
