@@ -11,7 +11,11 @@ public class Cliente {
     public Cliente(String nome, String cpf, String senha) {
         this.nome = nome;
         this.cpf = cpf;
-        this.senha = senha;
+        if (isSenhaValida(senha)) {
+            this.senha = senha;
+        } else {
+            throw new IllegalArgumentException("Senha deve conter exatamente 4 dígitos numéricos");
+        }
     }
 
     // Métodos
@@ -88,6 +92,25 @@ public class Cliente {
         return valido;
     }
 
+    // Método para verificar se a senha é válida (quatro dígitos numéricos)
+    private boolean isSenhaValida(String senha) {
+        return senha.matches("\\d{4}");
+    }
+
+    // Método para alterar a senha
+    public void alterarSenha(String novaSenha, String confirmacaoSenha) {
+        if (!novaSenha.equals(confirmacaoSenha)) {
+            System.out.println("As senhas fornecidas não coincidem");
+            return;
+        }
+        if (isSenhaValida(novaSenha)) {
+            this.senha = novaSenha;
+            System.out.println("Senha alterada com sucesso");
+        } else {
+            System.out.println("A nova senha deve conter exatamente 4 dígitos numéricos");
+        }
+    }
+
     // Getters e Setters
 
     // nome
@@ -115,14 +138,4 @@ public class Cliente {
             System.out.println("CPF inválido");
         }
     }
-
-    // senha
-    public void setSenha(String senhaUm, String senhaDois) {
-        if (senhaUm.equals(senhaDois)) {
-            this.senha = senhaUm;
-        } else {
-            System.out.println("Senhas diferentes");
-        }
-    }
-
 }
